@@ -4,14 +4,14 @@
 ## Title-zhCN:|cffff7d0aAddon|r |cff69ccf0Translator|r (Ukrainian)
 ## Title-zhTW:|cffff7d0aAddon|r |cff69ccf0Translator|r (Ukrainian)
 ## Notes: Модифікація для перекладу деяких модифікацій на українську мову.
-## Version: 1
+## Version: 1.3.2
 ## Author: melles1991
-## Dependencies: RaiderIO, AngryKeystones
 ## IconTexture: Interface\AddOns\RaiderIO\icons\logo
 ## DefaultState: Enabled
-## LoadOnDemand: 0
 ## SavedVariables: AddonUkrainizer_Options
 ## X-AddonProvider: github
 ## X-Category: Tooltip Miscellaneous
+## LoadOnDemand: 0
+## Dependencies: AngryKeystones, Details, OmniCC, RCLootCouncil
 
 AddonTranslator.xml

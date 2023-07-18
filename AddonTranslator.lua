@@ -1,6 +1,5 @@
 local addonName, ns = ...
 
-local sharedMedia = LibStub("LibSharedMedia-3.0")
 local settingsProvider = ns.SettingsProvider:new()
 
 local initialized = false
@@ -30,9 +29,6 @@ local function initializeAddon()
     hideOnEscape = true,
     preferredIndex = 3,
   }
-
-  sharedMedia:Register("font", "Arsenal Regular", [[Interface\AddOns\WowUkrainizer\assets\Arsenal_Regular.ttf]])
-  sharedMedia:Register("font", "Arsenal Bold", [[Interface\AddOns\WowUkrainizer\assets\Arsenal_Bold.ttf]])
 end
 
 local eventHandler = ns.EventHandler:new()
@@ -41,6 +37,25 @@ local function OnAddOnLoaded(_, name)
   local function OnPlayerLogin()
     settingsProvider:Load()
     createInterfaceOptions();
+
+    local translateAngryKeystones, translateOmniCC, translateRCLoot, translateDetails, translateRio =
+        settingsProvider.GetTranslatorsState()
+
+    if (translateAngryKeystones) then
+      LoadAngryKeystonesUkrainizer()
+    end
+    if (translateOmniCC) then
+      LoadOmniCCUkrainizer()
+    end
+    if (translateRCLoot) then
+      LoadRCLootUkrainizer()
+    end
+    if (translateDetails) then
+      LoadDetailsUkrainizer()
+    end
+    if (translateRio) then
+      LoadRioUkrainizer()
+    end
   end
 
   if (name == addonName) then

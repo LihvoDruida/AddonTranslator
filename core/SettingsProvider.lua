@@ -1,3 +1,4 @@
+local addon = select(2, ...)
 local addonName, ns = ...;
 
 local sharedMedia = LibStub("LibSharedMedia-3.0")
@@ -6,13 +7,48 @@ local settingsProvider = class("SettingsProvider");
 ns.SettingsProvider = settingsProvider
 
 local defaultOptions = {
+    -- Addons actual
+    angryKey = true,
+    omniCC = true,
+    RCLoot = true,
+
+    -- Addons TEST
+    details = false,
+    rio = false,
 }
 
 function settingsProvider:Load()
     AddonUkrainizer_Options = AddonUkrainizer_Options or {}
+    local def = self.GetDefaultOptions()
+
+    if (AddonUkrainizer_Options.angryKey == nil) then
+        AddonUkrainizer_Options.angryKey = def.angryKey
+    end
+    if (AddonUkrainizer_Options.omniCC == nil) then
+        AddonUkrainizer_Options.omniCC = def.omniCC
+    end
+    if (AddonUkrainizer_Options.RCLoot == nil) then
+        AddonUkrainizer_Options.RCLoot = def.RCLoot
+    end
+    if (AddonUkrainizer_Options.details == nil) then
+        AddonUkrainizer_Options.details = def.details
+    end
+    if (AddonUkrainizer_Options.rio == nil) then
+        AddonUkrainizer_Options.rio = def.rio
+    end
 end
 
 function settingsProvider:Build()
+    local function addVerticalMargin(order)
+        return {
+            type = "description",
+            name = " ",
+            fontSize = "medium",
+            order = order,
+            width = 3.6
+        }
+    end
+
     local function createIncrementor()
         local x = 0
         return function()
@@ -39,12 +75,20 @@ function settingsProvider:Build()
                 name = "Налаштування",
                 childGroups = "tab",
                 args = {
-                    Version = {
-                        type = "description",
-                        name = "Версія: " .. version .. " (" .. date("%d.%m.%y %H:%M:%S", releaseDate) .. ")",
-                        fontSize = "small",
+                    logo = {
                         order = 1,
-                        width = "full"
+                        type = "description",
+                        name = " ",
+                        image = addon.LOGO_LOCATION,
+                        imageWidth = 256,
+                        imageHeight = 64,
+                        width = 1.6
+                    },
+                    version = {
+                        order = 1.2,
+                        type = "description",
+                        name = function() return "|cFF87CEFAv" .. version .. "|r" end,
+                        width = 0.9
                     },
                     Commands = {
                         order = 2,
@@ -79,10 +123,77 @@ function settingsProvider:Build()
 Після натискання всі ваші поточні налаштування будуть втрачені, і будуть встановлені значення за замовчуванням.]],
                                 type = "execute",
                                 func = function()
-                                    StaticPopup_Show("WOW_UKRAINIZAER_RESET_SETTINGS");
+                                    StaticPopup_Show("UKRAINIZAER_RESET_SETTINGS");
                                 end,
                             },
                         }
+                    },
+                    responseOptions = {
+                        order = 4,
+                        type = "group",
+                        name = "Addons",
+                        inline = true,
+                        args = {
+                            angryKey = {
+                                order = 1,
+                                name = "AngryKeystones",
+                                desc = "AngryKeystones",
+                                type = "toggle",
+                                get = function(_) return AddonUkrainizer_Options.angryKey end,
+                                set = function(_, value) AddonUkrainizer_Options.angryKey = value end,
+                            },
+                            omniCC = {
+                                order = 2,
+                                name = "OmniCC",
+                                desc = "OmniCC",
+                                type = "toggle",
+                                get = function(_) return AddonUkrainizer_Options.omniCC end,
+                                set = function(_, value) AddonUkrainizer_Options.omniCC = value end,
+                            },
+                            RCLoot = {
+                                order = 3,
+                                name = "RCLootCouncil",
+                                desc = "RCLootCouncil",
+                                type = "toggle",
+                                get = function(_) return AddonUkrainizer_Options.RCLoot end,
+                                set = function(_, value) AddonUkrainizer_Options.RCLoot = value end,
+                            },
+                            VerticalMargin = addVerticalMargin(12),
+                            TooltipsHeader = {
+                                type = "header",
+                                name = "На стадії тестування",
+                                order = 13
+                            },
+                            desc1 = {
+                                order = 14,
+                                name =
+                                [[Дуже важливо!!!
+
+Попередження: Можливі проблеми та збої під час використання адонів, що можуть викликати некоректну роботу та збій інтерфейсу користувача]],
+                                type = "description",
+                            },
+                            SPC2 = {
+                                type = "description",
+                                name = " ",
+                                order = 15,
+                            },
+                            details = {
+                                order = 16,
+                                name = "Details",
+                                desc = "Details",
+                                type = "toggle",
+                                get = function(_) return AddonUkrainizer_Options.details end,
+                                set = function(_, value) AddonUkrainizer_Options.details = value end,
+                            },
+                            rio = {
+                                order = 17,
+                                name = "RaiderIO",
+                                desc = "RaiderIO",
+                                type = "toggle",
+                                get = function(_) return AddonUkrainizer_Options.rio end,
+                                set = function(_, value) AddonUkrainizer_Options.rio = value end,
+                            },
+                        },
                     },
                 }
             },
@@ -188,7 +299,7 @@ function settingsProvider:Build()
                         name = " ",
                         order = contributorsOrder(),
                     },
-					Youtube1 = {
+                    Youtube1 = {
                         type = "input",
                         name = "WowUkrainizer",
                         get = function() return "https://www.curseforge.com/wow/addons/wowukrainizer" end,
@@ -196,7 +307,7 @@ function settingsProvider:Build()
                         disabled = false,
                         dialogControl = "SFX-Info-URL",
                     },
-					SPC8 = {
+                    SPC8 = {
                         type = "description",
                         name = " ",
                         order = contributorsOrder(),
@@ -212,5 +323,10 @@ function settingsProvider:Reset()
     ReloadUI()
 end
 
-
 function settingsProvider.GetDefaultOptions() return defaultOptions end
+
+function settingsProvider.GetTranslatorsState()
+    return AddonUkrainizer_Options.angryKey, AddonUkrainizer_Options.omniCC,
+        AddonUkrainizer_Options.RCLoot, AddonUkrainizer_Options.details,
+        AddonUkrainizer_Options.rio
+end
