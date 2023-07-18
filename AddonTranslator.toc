@@ -11,6 +11,8 @@
 ## SavedVariables: AddonUkrainizer_Options
 ## X-AddonProvider: github
 ## X-Category: Tooltip Miscellaneous
+## X-Website: https://legacy.curseforge.com/wow/addons/addontranslator-ukrainian
+## X-Curse-Project-ID: 890116
 ## LoadOnDemand: 0
 ## Dependencies: AngryKeystones, Details, OmniCC, RCLootCouncil
 
