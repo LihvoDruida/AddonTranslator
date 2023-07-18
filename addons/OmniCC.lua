@@ -12,12 +12,12 @@ function LoadOmniCCUkrainizer()
     if not L then return end
 
     -- формати таймерів
-    L.DayFormat = "%дн"
-    L.HourFormat = "%год"
-    L.MinuteFormat = "%хв"
-    L.MMSSFormat = "%д:%02д"
-    L.SecondsFormat = "%с"
-    L.TenthsFormat = "%0.1ф"
+    L.DayFormat = "%dd"
+    L.HourFormat = "%dгод"
+    L.MinuteFormat = "%dхв"
+    L.MMSSFormat = "%d:%02d"
+    L.SecondsFormat = "%d"
+    L.TenthsFormat = "%0.1f"
 
     -- назви ефектів
     L.Activate = "Активувати"
