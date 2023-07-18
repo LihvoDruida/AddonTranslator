@@ -1,5 +1,9 @@
 package-as: AddonTranslator
-enable-nolib-creation: no
+
+embedded-libraries:
+  - ace3
+  - libstub
+  - sfx-widgets
 
 manual-changelog:
   filename: CHANGELOG.md
