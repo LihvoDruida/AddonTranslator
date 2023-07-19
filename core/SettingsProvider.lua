@@ -41,6 +41,25 @@ function settingsProvider:Load()
         AddonUkrainizer_Options.rScaner = def.rScaner
     end
 	
+    -- Check for the presence addons
+    if (not IsAddOnLoaded("AngryKeystones")) then
+        AddonUkrainizer_Options.angryKey = false
+    end
+    if (not IsAddOnLoaded("Details")) then
+        AddonUkrainizer_Options.details = false
+    end
+    if (not IsAddOnLoaded("OmniCC")) then
+        AddonUkrainizer_Options.omniCC = false
+    end
+    if (not IsAddOnLoaded("RCLootCouncil")) then
+        AddonUkrainizer_Options.RCLoot = false
+    end
+    if (not IsAddOnLoaded("RaiderIO")) then
+        AddonUkrainizer_Options.rio = false
+    end
+    if (not IsAddOnLoaded("RareScanner")) then
+        AddonUkrainizer_Options.rScaner = false
+    end
 end
 
 function settingsProvider:Build()
