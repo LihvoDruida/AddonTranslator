@@ -15,6 +15,7 @@ local defaultOptions = {
     -- Addons TEST
     details = false,
     rio = false,
+	rScaner = false, 
 }
 
 function settingsProvider:Load()
@@ -36,6 +37,10 @@ function settingsProvider:Load()
     if (AddonUkrainizer_Options.rio == nil) then
         AddonUkrainizer_Options.rio = def.rio
     end
+	if (AddonUkrainizer_Options.rScaner == nil) then
+        AddonUkrainizer_Options.rScaner = def.rScaner
+    end
+	
 end
 
 function settingsProvider:Build()
@@ -193,6 +198,14 @@ function settingsProvider:Build()
                                 get = function(_) return AddonUkrainizer_Options.rio end,
                                 set = function(_, value) AddonUkrainizer_Options.rio = value end,
                             },
+							rScaner = {
+                                order = 18,
+                                name = "RareScanner",
+                                desc = "RareScanner",
+                                type = "toggle",
+                                get = function(_) return AddonUkrainizer_Options.rScaner end,
+                                set = function(_, value) AddonUkrainizer_Options.rScaner = value end,
+                            },
                         },
                     },
                 }
@@ -328,5 +341,5 @@ function settingsProvider.GetDefaultOptions() return defaultOptions end
 function settingsProvider.GetTranslatorsState()
     return AddonUkrainizer_Options.angryKey, AddonUkrainizer_Options.omniCC,
         AddonUkrainizer_Options.RCLoot, AddonUkrainizer_Options.details,
-        AddonUkrainizer_Options.rio
+        AddonUkrainizer_Options.rio, AddonUkrainizer_Options.rScaner
 end

@@ -4,5 +4,6 @@
 	<Script file="Details.lua"/>
 	<Script file="OmniCC.lua"/>
 	<Script file="RaiderIO.lua"/>
+	<Script file="RareScanner.lua"/>
 	<Script file="RCLootCouncil.lua"/>
 </Ui>
