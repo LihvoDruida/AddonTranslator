@@ -1,4 +1,5 @@
-#### release 1.3.4 (hotfix)
+#### release 1.3.5
 
-- Added X-Curse-Project-ID to the TOC file.
-- Fix invalid option in `format' from OmniCC
+- Added logic to check for the presence of addons.
+- Added RareScanner support
+- Removed Dependencies to the TOC file.
