@@ -6,4 +6,5 @@
 	<Script file="RaiderIO.lua"/>
 	<Script file="RareScanner.lua"/>
 	<Script file="RCLootCouncil.lua"/>
+	<Script file="Scrap.lua"/>
 </Ui>

@@ -11,11 +11,12 @@ local defaultOptions = {
     angryKey = true,
     omniCC = true,
     RCLoot = true,
+    scrap = true,
 
     -- Addons TEST
     details = false,
     rio = false,
-	rScaner = false, 
+    rScaner = false,
 }
 
 function settingsProvider:Load()
@@ -37,10 +38,13 @@ function settingsProvider:Load()
     if (AddonUkrainizer_Options.rio == nil) then
         AddonUkrainizer_Options.rio = def.rio
     end
-	if (AddonUkrainizer_Options.rScaner == nil) then
+    if (AddonUkrainizer_Options.rScaner == nil) then
         AddonUkrainizer_Options.rScaner = def.rScaner
     end
-	
+    if (AddonUkrainizer_Options.scrap == nil) then
+        AddonUkrainizer_Options.scrap = def.scrap
+    end
+
     -- Check for the presence addons
     if (not IsAddOnLoaded("AngryKeystones")) then
         AddonUkrainizer_Options.angryKey = false
@@ -59,6 +63,9 @@ function settingsProvider:Load()
     end
     if (not IsAddOnLoaded("RareScanner")) then
         AddonUkrainizer_Options.rScaner = false
+    end
+    if (not IsAddOnLoaded("Scrap")) then
+        AddonUkrainizer_Options.scrap = false
     end
 end
 
@@ -182,6 +189,14 @@ function settingsProvider:Build()
                                 get = function(_) return AddonUkrainizer_Options.RCLoot end,
                                 set = function(_, value) AddonUkrainizer_Options.RCLoot = value end,
                             },
+                            scrap = {
+                                order = 11,
+                                name = "Scrap",
+                                desc = "Scrap",
+                                type = "toggle",
+                                get = function(_) return AddonUkrainizer_Options.scrap end,
+                                set = function(_, value) AddonUkrainizer_Options.scrap = value end,
+                            },
                             VerticalMargin = addVerticalMargin(12),
                             TooltipsHeader = {
                                 type = "header",
@@ -217,7 +232,7 @@ function settingsProvider:Build()
                                 get = function(_) return AddonUkrainizer_Options.rio end,
                                 set = function(_, value) AddonUkrainizer_Options.rio = value end,
                             },
-							rScaner = {
+                            rScaner = {
                                 order = 18,
                                 name = "RareScanner",
                                 desc = "RareScanner",
@@ -360,5 +375,5 @@ function settingsProvider.GetDefaultOptions() return defaultOptions end
 function settingsProvider.GetTranslatorsState()
     return AddonUkrainizer_Options.angryKey, AddonUkrainizer_Options.omniCC,
         AddonUkrainizer_Options.RCLoot, AddonUkrainizer_Options.details,
-        AddonUkrainizer_Options.rio, AddonUkrainizer_Options.rScaner
+        AddonUkrainizer_Options.rio, AddonUkrainizer_Options.rScaner, AddonUkrainizer_Options.scrap
 end

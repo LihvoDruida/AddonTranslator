@@ -38,7 +38,7 @@ local function OnAddOnLoaded(_, name)
     settingsProvider:Load()
     createInterfaceOptions();
 
-    local translateAngryKeystones, translateOmniCC, translateRCLoot, translateDetails, translateRio, translateRareScanner =
+    local translateAngryKeystones, translateOmniCC, translateRCLoot, translateDetails, translateRio, translateRareScanner, translateScrap =
         settingsProvider.GetTranslatorsState()
 
     if (translateAngryKeystones) then
@@ -58,6 +58,9 @@ local function OnAddOnLoaded(_, name)
     end
 	if (translateRareScanner) then
       LoadRareScannerUkrainizer()
+    end
+	if (translateScrap) then
+      LoadScrapUkrainizer()
     end
   end
 
