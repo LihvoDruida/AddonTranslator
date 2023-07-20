@@ -137,11 +137,9 @@ function settingsProvider:Build()
                             SettingsWarning = {
                                 type = "description",
                                 name =
-                                [[Увага!
+                                [[|cffff2020Зверни увагу!|r
 Зміни в налаштуваннях будуть застосовані тільки після перезавантаження інтерфейсу або виконання команди /reload.
-Будь ласка, зверніть увагу, що без цього кроку нові налаштування не вступлять в силу.
-
-]],
+Будь ласка, зверніть увагу, що без цього кроку нові налаштування не вступлять в силу.]],
                                 fontSize = "small",
                                 order = 1,
                                 width = "full"
@@ -175,7 +173,8 @@ function settingsProvider:Build()
                             angryKey = {
                                 order = 1,
                                 name = "AngryKeystones",
-                                desc = "AngryKeystones",
+                                desc =
+                                [[Перекласти |cFF87CEFAAngryKeystones|r на українську мову.]],
                                 type = "toggle",
                                 get = function(_) return AddonUkrainizer_Options.angryKey end,
                                 set = function(_, value) AddonUkrainizer_Options.angryKey = value end,
@@ -183,7 +182,7 @@ function settingsProvider:Build()
                             omniCC = {
                                 order = 2,
                                 name = "OmniCC",
-                                desc = "OmniCC",
+                                desc = [[Перекласти |cFF87CEFAOmniCC|r на українську мову.]],
                                 type = "toggle",
                                 get = function(_) return AddonUkrainizer_Options.omniCC end,
                                 set = function(_, value) AddonUkrainizer_Options.omniCC = value end,
@@ -191,7 +190,7 @@ function settingsProvider:Build()
                             RCLoot = {
                                 order = 3,
                                 name = "RCLootCouncil",
-                                desc = "RCLootCouncil",
+                                desc = [[Перекласти |cFF87CEFARCLootCouncil|r на українську мову.]],
                                 type = "toggle",
                                 get = function(_) return AddonUkrainizer_Options.RCLoot end,
                                 set = function(_, value) AddonUkrainizer_Options.RCLoot = value end,
@@ -199,7 +198,7 @@ function settingsProvider:Build()
                             scrap = {
                                 order = 10,
                                 name = "Scrap",
-                                desc = "Scrap",
+                                desc = [[Перекласти |cFF87CEFAScrap|r на українську мову.]],
                                 type = "toggle",
                                 get = function(_) return AddonUkrainizer_Options.scrap end,
                                 set = function(_, value) AddonUkrainizer_Options.scrap = value end,
@@ -213,9 +212,10 @@ function settingsProvider:Build()
                             desc1 = {
                                 order = 14,
                                 name =
-                                [[Дуже важливо!!!
+                                [[|cffff2020Увага, бандернятки!|r
 
-Попередження: Можливі проблеми та збої під час використання адонів, що можуть викликати некоректну роботу та збій інтерфейсу користувача]],
+Всі елементи, які позначені |cffff2020червоним кольором|r можуть бути нестабільними або містити проблеми.
+]],
                                 type = "description",
                             },
                             SPC2 = {
@@ -225,16 +225,18 @@ function settingsProvider:Build()
                             },
                             details = {
                                 order = 16,
-                                name = "Details",
-                                desc = "Details",
+                                name = "|cffff2020Details|r",
+                                desc =
+                                [[На жаль, в |cFF87CEFADetails|r поки що проблема відображення перекладу через технічну неможливість заміни шрифтів на кириличні.]],
                                 type = "toggle",
                                 get = function(_) return AddonUkrainizer_Options.details end,
                                 set = function(_, value) AddonUkrainizer_Options.details = value end,
                             },
                             rio = {
                                 order = 17,
-                                name = "RaiderIO",
-                                desc = "RaiderIO",
+                                name = "|cffff2020RaiderIO|r",
+                                desc =
+                                [[На жаль, |cFF87CEFARaiderIO|r поки що |cffff2020неможливо|r перекласти на українську мову через технічні особливості його реалізації локалізації.]],
                                 type = "toggle",
                                 get = function(_) return AddonUkrainizer_Options.rio end,
                                 set = function(_, value) AddonUkrainizer_Options.rio = value end,
@@ -242,7 +244,8 @@ function settingsProvider:Build()
                             rScaner = {
                                 order = 18,
                                 name = "RareScanner",
-                                desc = "RareScanner",
+                                desc =
+                                [[|cFF87CEFARareScanner|r частково перекладений на українську мову, може містити деякі помилки в перекладі або інтерфейсі.]],
                                 type = "toggle",
                                 get = function(_) return AddonUkrainizer_Options.rScaner end,
                                 set = function(_, value) AddonUkrainizer_Options.rScaner = value end,
@@ -250,7 +253,8 @@ function settingsProvider:Build()
                             WeakAuras = {
                                 order = 19,
                                 name = "WeakAuras",
-                                desc = "WeakAuras",
+                                desc =
+                                [[|cFF87CEFAWeakAuras|r частково перекладений на українську мову, але може містити деякі помилки в перекладі або інтерфейсі.]],
                                 type = "toggle",
                                 get = function(_) return AddonUkrainizer_Options.WeakAuras end,
                                 set = function(_, value) AddonUkrainizer_Options.WeakAuras = value end,
