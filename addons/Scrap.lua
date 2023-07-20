@@ -67,7 +67,6 @@ function LoadScrapUkrainizer()
     L.Tutorial_Bye = 'Гарної вам подорожі, Да буде з вами |cffb400ffЕпік|r. Сміття не пройде!'
   else
     -- Модуль Scrap не завантажений, виконайте відповідні дії або повідомлення
-    local namespace = ""
     print("[AddonTranslator]: Модуль Scrap не завантажений")
   end
 end
