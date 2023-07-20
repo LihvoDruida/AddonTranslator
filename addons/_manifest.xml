@@ -7,4 +7,5 @@
 	<Script file="RareScanner.lua"/>
 	<Script file="RCLootCouncil.lua"/>
 	<Script file="Scrap.lua"/>
+	<Script file="WeakAuras.lua"/>
 </Ui>

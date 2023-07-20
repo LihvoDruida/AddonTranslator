@@ -17,6 +17,7 @@ local defaultOptions = {
     details = false,
     rio = false,
     rScaner = false,
+    WeakAuras = false,
 }
 
 function settingsProvider:Load()
@@ -44,6 +45,9 @@ function settingsProvider:Load()
     if (AddonUkrainizer_Options.scrap == nil) then
         AddonUkrainizer_Options.scrap = def.scrap
     end
+    if (AddonUkrainizer_Options.WeakAuras == nil) then
+        AddonUkrainizer_Options.WeakAuras = def.WeakAuras
+    end
 
     -- Check for the presence addons
     if (not IsAddOnLoaded("AngryKeystones")) then
@@ -66,6 +70,9 @@ function settingsProvider:Load()
     end
     if (not IsAddOnLoaded("Scrap")) then
         AddonUkrainizer_Options.scrap = false
+    end
+    if (not IsAddOnLoaded("WeakAuras")) then
+        AddonUkrainizer_Options.WeakAuras = false
     end
 end
 
@@ -190,7 +197,7 @@ function settingsProvider:Build()
                                 set = function(_, value) AddonUkrainizer_Options.RCLoot = value end,
                             },
                             scrap = {
-                                order = 11,
+                                order = 10,
                                 name = "Scrap",
                                 desc = "Scrap",
                                 type = "toggle",
@@ -239,6 +246,14 @@ function settingsProvider:Build()
                                 type = "toggle",
                                 get = function(_) return AddonUkrainizer_Options.rScaner end,
                                 set = function(_, value) AddonUkrainizer_Options.rScaner = value end,
+                            },
+                            WeakAuras = {
+                                order = 19,
+                                name = "WeakAuras",
+                                desc = "WeakAuras",
+                                type = "toggle",
+                                get = function(_) return AddonUkrainizer_Options.WeakAuras end,
+                                set = function(_, value) AddonUkrainizer_Options.WeakAuras = value end,
                             },
                         },
                     },
@@ -375,5 +390,6 @@ function settingsProvider.GetDefaultOptions() return defaultOptions end
 function settingsProvider.GetTranslatorsState()
     return AddonUkrainizer_Options.angryKey, AddonUkrainizer_Options.omniCC,
         AddonUkrainizer_Options.RCLoot, AddonUkrainizer_Options.details,
-        AddonUkrainizer_Options.rio, AddonUkrainizer_Options.rScaner, AddonUkrainizer_Options.scrap
+        AddonUkrainizer_Options.rio, AddonUkrainizer_Options.rScaner, AddonUkrainizer_Options.scrap,
+        AddonUkrainizer_Options.WeakAuras
 end

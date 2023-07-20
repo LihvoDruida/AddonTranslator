@@ -38,7 +38,7 @@ local function OnAddOnLoaded(_, name)
     settingsProvider:Load()
     createInterfaceOptions();
 
-    local translateAngryKeystones, translateOmniCC, translateRCLoot, translateDetails, translateRio, translateRareScanner, translateScrap =
+    local translateAngryKeystones, translateOmniCC, translateRCLoot, translateDetails, translateRio, translateRareScanner, translateScrap, translateWeakAuras =
         settingsProvider.GetTranslatorsState()
 
     if (translateAngryKeystones) then
@@ -61,6 +61,9 @@ local function OnAddOnLoaded(_, name)
     end
 	if (translateScrap) then
       LoadScrapUkrainizer()
+    end
+	if (translateWeakAuras) then
+      LoadWeakAurasUkrainizer()
     end
   end
 
