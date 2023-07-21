@@ -16,76 +16,51 @@ local defaultOptions = {
     -- Addons TEST
     details = false,
     rio = false,
+    adiBags = false,
     rScaner = false,
     WeakAuras = false,
 }
 
 function settingsProvider:Load()
     AddonUkrainizer_Options = AddonUkrainizer_Options or {}
-    local def = self.GetDefaultOptions()
 
-    if (AddonUkrainizer_Options.angryKey == nil) then
-        AddonUkrainizer_Options.angryKey = def.angryKey
-    end
-    if (AddonUkrainizer_Options.omniCC == nil) then
-        AddonUkrainizer_Options.omniCC = def.omniCC
-    end
-    if (AddonUkrainizer_Options.RCLoot == nil) then
-        AddonUkrainizer_Options.RCLoot = def.RCLoot
-    end
-    if (AddonUkrainizer_Options.details == nil) then
-        AddonUkrainizer_Options.details = def.details
-    end
-    if (AddonUkrainizer_Options.rio == nil) then
-        AddonUkrainizer_Options.rio = def.rio
-    end
-    if (AddonUkrainizer_Options.rScaner == nil) then
-        AddonUkrainizer_Options.rScaner = def.rScaner
-    end
-    if (AddonUkrainizer_Options.scrap == nil) then
-        AddonUkrainizer_Options.scrap = def.scrap
-    end
-    if (AddonUkrainizer_Options.WeakAuras == nil) then
-        AddonUkrainizer_Options.WeakAuras = def.WeakAuras
+    -- Assign default values for options not present in AddonUkrainizer_Options
+    for key, defaultValue in pairs(defaultOptions) do
+        if AddonUkrainizer_Options[key] == nil then
+            AddonUkrainizer_Options[key] = defaultValue
+        end
     end
 
-    -- Check for the presence addons
-    if (not IsAddOnLoaded("AngryKeystones")) then
-        AddonUkrainizer_Options.angryKey = false
-    end
-    if (not IsAddOnLoaded("Details")) then
-        AddonUkrainizer_Options.details = false
-    end
-    if (not IsAddOnLoaded("OmniCC")) then
-        AddonUkrainizer_Options.omniCC = false
-    end
-    if (not IsAddOnLoaded("RCLootCouncil")) then
-        AddonUkrainizer_Options.RCLoot = false
-    end
-    if (not IsAddOnLoaded("RaiderIO")) then
-        AddonUkrainizer_Options.rio = false
-    end
-    if (not IsAddOnLoaded("RareScanner")) then
-        AddonUkrainizer_Options.rScaner = false
-    end
-    if (not IsAddOnLoaded("Scrap")) then
-        AddonUkrainizer_Options.scrap = false
-    end
-    if (not IsAddOnLoaded("WeakAuras")) then
-        AddonUkrainizer_Options.WeakAuras = false
-    end
+    -- Check for the presence of addons and update options accordingly
+    AddonUkrainizer_Options.angryKey = IsAddOnLoaded("AngryKeystones") and AddonUkrainizer_Options.angryKey or false
+    AddonUkrainizer_Options.details = IsAddOnLoaded("Details") and AddonUkrainizer_Options.details or false
+    AddonUkrainizer_Options.omniCC = IsAddOnLoaded("OmniCC") and AddonUkrainizer_Options.omniCC or false
+    AddonUkrainizer_Options.RCLoot = IsAddOnLoaded("RCLootCouncil") and AddonUkrainizer_Options.RCLoot or false
+    AddonUkrainizer_Options.rio = IsAddOnLoaded("RaiderIO") and AddonUkrainizer_Options.rio or false
+    AddonUkrainizer_Options.rScaner = IsAddOnLoaded("RareScanner") and AddonUkrainizer_Options.rScaner or false
+    AddonUkrainizer_Options.scrap = IsAddOnLoaded("Scrap") and AddonUkrainizer_Options.scrap or false
+    AddonUkrainizer_Options.WeakAuras = IsAddOnLoaded("WeakAuras") and AddonUkrainizer_Options.WeakAuras or false
+    AddonUkrainizer_Options.adiBags = IsAddOnLoaded("AdiBags") and AddonUkrainizer_Options.adiBags or false
 end
 
 function settingsProvider:Build()
     local function addVerticalMargin(order)
         return {
             type = "description",
-            name = " ",
+            name = "",
             fontSize = "medium",
             order = order,
             width = 3.6
         }
     end
+    local function addHeader(name, order)
+        return {
+            type = "header",
+            name = name,
+            order = order,
+        }
+    end
+
 
     local function createIncrementor()
         local x = 0
@@ -102,6 +77,42 @@ function settingsProvider:Build()
     end
 
     local contributorsOrder = createIncrementor()
+
+    local addons = {
+        { "AngryKeystones", "angryKey", "Перекласти |cFF87CEFAAngryKeystones|r на українську мову." },
+        { "OmniCC",         "omniCC",   "Перекласти |cFF87CEFAOmniCC|r на українську мову." },
+        { "RCLootCouncil",  "RCLoot",   "Перекласти |cFF87CEFARCLootCouncil|r на українську мову." },
+        { "Scrap",          "scrap",    "Перекласти |cFF87CEFAScrap|r на українську мову." },
+    }
+
+    local testers = {
+        { "|cffff2020Details|r", "details",
+            "На жаль, в |cFF87CEFADetails|r поки що проблема відображення перекладу через технічну неможливість заміни шрифтів на кириличні." },
+        { "|cffff2020RaiderIO|r", "rio",
+            "На жаль, |cFF87CEFARaiderIO|r поки що |cffff2020неможливо|r перекласти на українську мову через технічні особливості його реалізації локалізації." },
+        { "RareScanner", "rScaner",
+            "|cFF87CEFARareScanner|r частково перекладений на українську мову, може містити деякі помилки в перекладі або інтерфейсі." },
+        { "WeakAuras", "WeakAuras",
+            "|cFF87CEFAWeakAuras|r частково перекладений на українську мову, але може містити деякі помилки в перекладі або інтерфейсі." },
+        { "AdiBags", "adiBags",
+            "|cFF87CEFAAdiBags|r частково перекладений на українську мову, може містити деякі помилки в перекладі або інтерфейсі." },
+    }
+
+    local contributors = {
+        { "Автор",                  "Лігво Друїда (molaf)\n\n", "Proofreaders" },
+        { "Технічна поміч", "55CancriE, Heroicsolo \n\n",          "Translators" },
+    }
+
+    local mediaAddons = {
+        { "Wow Ukrainizer", "https://legacy.curseforge.com/wow/addons/wowukrainizer",                   "wowua" },
+        { "DBM Ukrainian",  "https://legacy.curseforge.com/wow/addons/dbm-voice-pack-ukrainian-female", "dbmvp" },
+        { "DBM Countdown Ukrainian",
+            "https://legacy.curseforge.com/wow/addons/deadly-boss-mods-dbm-ukrainian-countdown-pack", "dbmcp" },
+    }
+    local mediaSocial = {
+        { "Лігво Друїда", "https://www.youtube.com/channel/UCWex56K6Xev50zIF7hVCyMQ", "youtube1" },
+        { "Unbrkbl Opt1mist",        "https://www.youtube.com/@unbrkblopt1mist",                 "youtube2" },
+    }
 
     ns.Options = {
         type = "group",
@@ -159,7 +170,7 @@ function settingsProvider:Build()
 Після натискання всі ваші поточні налаштування будуть втрачені, і будуть встановлені значення за замовчуванням.]],
                                 type = "execute",
                                 func = function()
-                                    StaticPopup_Show("UKRAINIZAER_RESET_SETTINGS");
+                                    StaticPopup_Show("ADDON_TRANSLATOR_RESET_SETTINGS");
                                 end,
                             },
                         }
@@ -169,97 +180,7 @@ function settingsProvider:Build()
                         type = "group",
                         name = "Addons",
                         inline = true,
-                        args = {
-                            angryKey = {
-                                order = 1,
-                                name = "AngryKeystones",
-                                desc =
-                                [[Перекласти |cFF87CEFAAngryKeystones|r на українську мову.]],
-                                type = "toggle",
-                                get = function(_) return AddonUkrainizer_Options.angryKey end,
-                                set = function(_, value) AddonUkrainizer_Options.angryKey = value end,
-                            },
-                            omniCC = {
-                                order = 2,
-                                name = "OmniCC",
-                                desc = [[Перекласти |cFF87CEFAOmniCC|r на українську мову.]],
-                                type = "toggle",
-                                get = function(_) return AddonUkrainizer_Options.omniCC end,
-                                set = function(_, value) AddonUkrainizer_Options.omniCC = value end,
-                            },
-                            RCLoot = {
-                                order = 3,
-                                name = "RCLootCouncil",
-                                desc = [[Перекласти |cFF87CEFARCLootCouncil|r на українську мову.]],
-                                type = "toggle",
-                                get = function(_) return AddonUkrainizer_Options.RCLoot end,
-                                set = function(_, value) AddonUkrainizer_Options.RCLoot = value end,
-                            },
-                            scrap = {
-                                order = 10,
-                                name = "Scrap",
-                                desc = [[Перекласти |cFF87CEFAScrap|r на українську мову.]],
-                                type = "toggle",
-                                get = function(_) return AddonUkrainizer_Options.scrap end,
-                                set = function(_, value) AddonUkrainizer_Options.scrap = value end,
-                            },
-                            VerticalMargin = addVerticalMargin(12),
-                            TooltipsHeader = {
-                                type = "header",
-                                name = "На стадії тестування",
-                                order = 13
-                            },
-                            desc1 = {
-                                order = 14,
-                                name =
-                                [[|cffff2020Увага, бандернятки!|r
-
-Всі елементи, які позначені |cffff2020червоним кольором|r можуть бути нестабільними або містити проблеми.
-]],
-                                type = "description",
-                            },
-                            SPC2 = {
-                                type = "description",
-                                name = " ",
-                                order = 15,
-                            },
-                            details = {
-                                order = 16,
-                                name = "|cffff2020Details|r",
-                                desc =
-                                [[На жаль, в |cFF87CEFADetails|r поки що проблема відображення перекладу через технічну неможливість заміни шрифтів на кириличні.]],
-                                type = "toggle",
-                                get = function(_) return AddonUkrainizer_Options.details end,
-                                set = function(_, value) AddonUkrainizer_Options.details = value end,
-                            },
-                            rio = {
-                                order = 17,
-                                name = "|cffff2020RaiderIO|r",
-                                desc =
-                                [[На жаль, |cFF87CEFARaiderIO|r поки що |cffff2020неможливо|r перекласти на українську мову через технічні особливості його реалізації локалізації.]],
-                                type = "toggle",
-                                get = function(_) return AddonUkrainizer_Options.rio end,
-                                set = function(_, value) AddonUkrainizer_Options.rio = value end,
-                            },
-                            rScaner = {
-                                order = 18,
-                                name = "RareScanner",
-                                desc =
-                                [[|cFF87CEFARareScanner|r частково перекладений на українську мову, може містити деякі помилки в перекладі або інтерфейсі.]],
-                                type = "toggle",
-                                get = function(_) return AddonUkrainizer_Options.rScaner end,
-                                set = function(_, value) AddonUkrainizer_Options.rScaner = value end,
-                            },
-                            WeakAuras = {
-                                order = 19,
-                                name = "WeakAuras",
-                                desc =
-                                [[|cFF87CEFAWeakAuras|r частково перекладений на українську мову, але може містити деякі помилки в перекладі або інтерфейсі.]],
-                                type = "toggle",
-                                get = function(_) return AddonUkrainizer_Options.WeakAuras end,
-                                set = function(_, value) AddonUkrainizer_Options.WeakAuras = value end,
-                            },
-                        },
+                        args = {},
                     },
                 }
             },
@@ -291,97 +212,106 @@ function settingsProvider:Build()
                         name = " ",
                         order = contributorsOrder(),
                     },
-                    ContributorsHeader = {
+                    contributorsHeader = {
                         order = contributorsOrder(),
-                        type = "header",
+                        type = "group",
                         name = "Причетні",
-                        dialogControl = "SFX-Header-II",
+                        inline = true,
+                        args = {},
                     },
-                    Proofreaders = {
-                        type = "input",
-                        name = "Автор",
-                        get = function() return "Лігво Друїда (molaf)\n\n" end,
+                    mediaHeader = {
                         order = contributorsOrder(),
-                        disabled = true,
-                        dialogControl = "SFX-Info",
-                    },
-                    SPC0 = {
-                        type = "description",
-                        name = " ",
-                        order = contributorsOrder(),
-                    },
-                    Translators = {
-                        type = "input",
-                        name = "Технічна поміч",
-                        get = function()
-                            return
-                            "55CancriE, Heroicsolo \n\n"
-                        end,
-                        order = contributorsOrder(),
-                        disabled = true,
-                        dialogControl = "SFX-Info",
-                    },
-                    SPC1 = {
-                        type = "description",
-                        name = " ",
-                        order = contributorsOrder(),
-                    },
-                    Bugfix = {
-                        type = "description",
-                        name = " ",
-                        order = contributorsOrder(),
-                    },
-                    SPC2 = {
-                        type = "description",
-                        name = " ",
-                        order = contributorsOrder(),
-                    },
-                    SPC4 = {
-                        type = "description",
-                        name = " ",
-                        order = contributorsOrder(),
-                    },
-                    Media = {
-                        order = contributorsOrder(),
-                        type = "header",
+                        type = "group",
                         name = "Ресурси та Посилання",
-                        dialogControl = "SFX-Header-II",
-                    },
-                    SPC6 = {
-                        type = "description",
-                        name = " ",
-                        order = contributorsOrder(),
-                    },
-                    Discords1 = {
-                        type = "input",
-                        name = "Ukrainian Community",
-                        get = function() return "https://bit.ly/ua_wow" end,
-                        order = contributorsOrder(),
-                        disabled = false,
-                        dialogControl = "SFX-Info-URL",
-                    },
-                    SPC7 = {
-                        type = "description",
-                        name = " ",
-                        order = contributorsOrder(),
-                    },
-                    Youtube1 = {
-                        type = "input",
-                        name = "WowUkrainizer",
-                        get = function() return "https://www.curseforge.com/wow/addons/wowukrainizer" end,
-                        order = contributorsOrder(),
-                        disabled = false,
-                        dialogControl = "SFX-Info-URL",
-                    },
-                    SPC8 = {
-                        type = "description",
-                        name = " ",
-                        order = contributorsOrder(),
+                        inline = true,
+                        args = {},
                     },
                 }
             }
         }
     }
+
+    local argsOption = ns.Options.args.General.args.responseOptions.args
+    local orderOption = 1
+    local argsContributors = ns.Options.args.Contributors.args.contributorsHeader.args
+    local orderContributors = 1
+    local argsMedia = ns.Options.args.Contributors.args.mediaHeader.args
+    local orderMedia = 1
+
+    for _, addonData in ipairs(addons) do
+        local addonName, optionKey, addonDesc = unpack(addonData)
+        argsOption[optionKey] = {
+            order = orderOption,
+            name = addonName,
+            desc = addonDesc,
+            type = "toggle",
+            get = function(_) return AddonUkrainizer_Options[optionKey] end,
+            set = function(_, value) AddonUkrainizer_Options[optionKey] = value end,
+        }
+        orderOption = orderOption + 1
+    end
+
+    argsOption.VerticalMargin1 = addVerticalMargin(orderOption)
+    orderOption = orderOption + 1
+    argsOption.Header1 = addHeader("На стадії тестування", orderOption)
+    orderOption = orderOption + 1
+
+    for _, testerData in ipairs(testers) do
+        local addonName, optionKey, addonDesc = unpack(testerData)
+        argsOption[optionKey] = {
+            order = orderOption,
+            name = addonName,
+            desc = addonDesc,
+            type = "toggle",
+            get = function(_) return AddonUkrainizer_Options[optionKey] end,
+            set = function(_, value) AddonUkrainizer_Options[optionKey] = value end,
+        }
+        orderOption = orderOption + 1
+    end
+
+    for _, contributorData in ipairs(contributors) do
+        local desc, contributorName, optionKey = unpack(contributorData)
+        argsContributors[optionKey] = {
+            type = "input",
+            name = desc,
+            get = function() return contributorName end,
+            order = orderContributors,
+            disabled = true,
+            dialogControl = "SFX-Info",
+        }
+        orderContributors = orderContributors + 1
+    end
+
+    for _, mediaAddonsData in ipairs(mediaAddons) do
+        local name, url, optionKey = unpack(mediaAddonsData)
+        argsMedia[optionKey] = {
+            type = "input",
+            name = name,
+            get = function() return url end,
+            order = orderMedia,
+            disabled = false,
+            dialogControl = "SFX-Info-URL",
+        }
+        orderMedia = orderMedia + 1
+    end
+
+    argsMedia.VerticalMargin1 = addVerticalMargin(orderMedia)
+    orderMedia = orderMedia + 1
+    argsMedia.Header1 = addHeader("Медіа ресурси", orderMedia)
+    orderMedia = orderMedia + 1
+
+    for _, mediaSocialData in ipairs(mediaSocial) do
+        local name, url, optionKey = unpack(mediaSocialData)
+        argsMedia[optionKey] = {
+            type = "input",
+            name = name,
+            get = function() return url end,
+            order = orderMedia,
+            disabled = false,
+            dialogControl = "SFX-Info-URL",
+        }
+        orderMedia = orderMedia + 1
+    end
 end
 
 function settingsProvider:Reset()
@@ -395,5 +325,5 @@ function settingsProvider.GetTranslatorsState()
     return AddonUkrainizer_Options.angryKey, AddonUkrainizer_Options.omniCC,
         AddonUkrainizer_Options.RCLoot, AddonUkrainizer_Options.details,
         AddonUkrainizer_Options.rio, AddonUkrainizer_Options.rScaner, AddonUkrainizer_Options.scrap,
-        AddonUkrainizer_Options.WeakAuras
+        AddonUkrainizer_Options.WeakAuras, AddonUkrainizer_Options.adiBags, AddonUkrainizer_Options.mrt
 end
