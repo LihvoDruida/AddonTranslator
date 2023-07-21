@@ -8,4 +8,5 @@
 	<Script file="RCLootCouncil.lua"/>
 	<Script file="Scrap.lua"/>
 	<Script file="WeakAuras.lua"/>
+	<Script file="AdiBags.lua"/>
 </Ui>
