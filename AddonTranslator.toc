@@ -6,7 +6,7 @@
 ## Notes: Модифікація для перекладу деяких модифікацій на українську мову.
 ## Version: 1.5.0
 ## Author: melles1991
-## IconTexture: Interface\AddOns\RaiderIO\icons\logo
+## IconTexture: Interface\AddOns\AddonTranslator\assets\logo
 ## DefaultState: Enabled
 ## SavedVariables: AddonUkrainizer_Options
 ## X-AddonProvider: github
