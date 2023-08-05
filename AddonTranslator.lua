@@ -21,7 +21,7 @@ local function OnPlayerLogin()
   settingsProvider:Load()
   createInterfaceOptions()
 
-  local translateAngryKeystones, translateOmniCC, translateRCLoot, translateDetails, translateRio, translateRareScanner, translateScrap, translateWeakAuras, translateAdiBags =
+  local translateAngryKeystones, translateOmniCC, translateRCLoot, translateDetails, translateRio, translateRareScanner, translateScrap, translateWeakAuras, translateAdiBags, translateClique =
       settingsProvider.GetTranslatorsState()
 
   local translators = {
@@ -34,6 +34,7 @@ local function OnPlayerLogin()
     { enabled = translateScrap,          func = LoadScrapUkrainizer },
     { enabled = translateWeakAuras,      func = LoadWeakAurasUkrainizer },
     { enabled = translateAdiBags,        func = LoadAdiBagsUkrainizer },
+    { enabled = translateClique,         func = LoadCliqueUkrainizer },
   }
 
   for _, translator in ipairs(translators) do

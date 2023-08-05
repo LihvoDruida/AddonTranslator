@@ -17,6 +17,7 @@ local defaultOptions = {
     details = false,
     rio = false,
     adiBags = false,
+    clique = false,
     rScaner = false,
     WeakAuras = false,
 }
@@ -41,6 +42,7 @@ function settingsProvider:Load()
     AddonUkrainizer_Options.scrap = IsAddOnLoaded("Scrap") and AddonUkrainizer_Options.scrap or false
     AddonUkrainizer_Options.WeakAuras = IsAddOnLoaded("WeakAuras") and AddonUkrainizer_Options.WeakAuras or false
     AddonUkrainizer_Options.adiBags = IsAddOnLoaded("AdiBags") and AddonUkrainizer_Options.adiBags or false
+    AddonUkrainizer_Options.clique = IsAddOnLoaded("Clique") and AddonUkrainizer_Options.clique or false
 end
 
 function settingsProvider:Build()
@@ -80,9 +82,9 @@ function settingsProvider:Build()
 
     local addons = {
         { "AngryKeystones", "angryKey", "Перекласти |cFF87CEFAAngryKeystones|r на українську мову." },
-        { "OmniCC",         "omniCC",   "Перекласти |cFF87CEFAOmniCC|r на українську мову." },
-        { "RCLootCouncil",  "RCLoot",   "Перекласти |cFF87CEFARCLootCouncil|r на українську мову." },
-        { "Scrap",          "scrap",    "Перекласти |cFF87CEFAScrap|r на українську мову." },
+        { "OmniCC", "omniCC", "Перекласти |cFF87CEFAOmniCC|r на українську мову." },
+        { "RCLootCouncil", "RCLoot", "Перекласти |cFF87CEFARCLootCouncil|r на українську мову." },
+        { "Scrap", "scrap", "Перекласти |cFF87CEFAScrap|r на українську мову." },
     }
 
     local testers = {
@@ -96,11 +98,13 @@ function settingsProvider:Build()
             "|cFF87CEFAWeakAuras|r частково перекладений на українську мову, але може містити деякі помилки в перекладі або інтерфейсі." },
         { "AdiBags", "adiBags",
             "|cFF87CEFAAdiBags|r частково перекладений на українську мову, може містити деякі помилки в перекладі або інтерфейсі." },
+        { "Clique", "clique",
+            "|cFF87CEFAAdiBags|r частково перекладений на українську мову, може містити деякі помилки в перекладі або інтерфейсі." },
     }
 
     local contributors = {
-        { "Автор",                  "Лігво Друїда (molaf)\n\n", "Proofreaders" },
-        { "Технічна поміч", "55CancriE, Heroicsolo \n\n",          "Translators" },
+        { "Автор", "Лігво Друїда (molaf)\n\n", "Proofreaders" },
+        { "Технічна поміч", "55CancriE, Heroicsolo \n\n", "Translators" },
     }
 
     local mediaAddons = {
@@ -111,7 +115,7 @@ function settingsProvider:Build()
     }
     local mediaSocial = {
         { "Лігво Друїда", "https://www.youtube.com/channel/UCWex56K6Xev50zIF7hVCyMQ", "youtube1" },
-        { "Unbrkbl Opt1mist",        "https://www.youtube.com/@unbrkblopt1mist",                 "youtube2" },
+        { "Unbrkbl Opt1mist", "https://www.youtube.com/@unbrkblopt1mist", "youtube2" },
     }
 
     ns.Options = {
@@ -325,5 +329,5 @@ function settingsProvider.GetTranslatorsState()
     return AddonUkrainizer_Options.angryKey, AddonUkrainizer_Options.omniCC,
         AddonUkrainizer_Options.RCLoot, AddonUkrainizer_Options.details,
         AddonUkrainizer_Options.rio, AddonUkrainizer_Options.rScaner, AddonUkrainizer_Options.scrap,
-        AddonUkrainizer_Options.WeakAuras, AddonUkrainizer_Options.adiBags, AddonUkrainizer_Options.mrt
+        AddonUkrainizer_Options.WeakAuras, AddonUkrainizer_Options.adiBags, AddonUkrainizer_Options.clique
 end
