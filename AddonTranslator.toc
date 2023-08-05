@@ -4,7 +4,7 @@
 ## Title-zhCN:|cffff7d0aAddon|r |cff69ccf0Translator|r (Ukrainian)
 ## Title-zhTW:|cffff7d0aAddon|r |cff69ccf0Translator|r (Ukrainian)
 ## Notes: Модифікація для перекладу деяких модифікацій на українську мову.
-## Version: 1.5.0
+## Version: 1.5.1
 ## Author: melles1991
 ## IconTexture: Interface\AddOns\AddonTranslator\assets\logo
 ## DefaultState: Enabled
