@@ -10,7 +10,6 @@ local defaultOptions = {
     -- Addons actual
     angryKey = true,
     omniCC = true,
-    RCLoot = true,
     scrap = true,
 
     -- Addons TEST
@@ -19,6 +18,7 @@ local defaultOptions = {
     adiBags = false,
     clique = false,
     rScaner = false,
+    RCLoot = false,
     WeakAuras = false,
 }
 
@@ -83,7 +83,6 @@ function settingsProvider:Build()
     local addons = {
         { "AngryKeystones", "angryKey", "Перекласти |cFF87CEFAAngryKeystones|r на українську мову." },
         { "OmniCC", "omniCC", "Перекласти |cFF87CEFAOmniCC|r на українську мову." },
-        { "RCLootCouncil", "RCLoot", "Перекласти |cFF87CEFARCLootCouncil|r на українську мову." },
         { "Scrap", "scrap", "Перекласти |cFF87CEFAScrap|r на українську мову." },
     }
 
@@ -94,6 +93,8 @@ function settingsProvider:Build()
             "На жаль, |cFF87CEFARaiderIO|r поки що |cffff2020неможливо|r перекласти на українську мову через технічні особливості його реалізації локалізації." },
         { "RareScanner", "rScaner",
             "|cFF87CEFARareScanner|r частково перекладений на українську мову, може містити деякі помилки в перекладі або інтерфейсі." },
+        { "RCLootCouncil", "RCLoot",
+            "|cFF87CEFARCLootCouncil|r частково перекладений на українську мову, може містити деякі помилки в перекладі або інтерфейсі." },
         { "WeakAuras", "WeakAuras",
             "|cFF87CEFAWeakAuras|r частково перекладений на українську мову, але може містити деякі помилки в перекладі або інтерфейсі." },
         { "AdiBags", "adiBags",
