@@ -9,4 +9,5 @@
 	<Script file="Scrap.lua"/>
 	<Script file="WeakAuras.lua"/>
 	<Script file="AdiBags.lua"/>
+	<Script file="Clique.lua"/>
 </Ui>
