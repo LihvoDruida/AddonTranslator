@@ -1,7 +1,3 @@
-#### release 1.5.1
+#### release 1.5.2
 
-- RCLoot migrated to "testers" category
-- Translation for Scrap has been corrected
-- Translation for AngryKeystones has been completely corrected
-- Add Clique support
-- Update logo
+- Toc Bumps for retail
