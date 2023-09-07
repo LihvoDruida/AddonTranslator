@@ -1,4 +1,4 @@
-## Interface: 100105
+## Interface: 100107
 ## Title:|cffff7d0aAddon|r |cff69ccf0Translator|r (Ukrainian)
 ## Title-ruRU:|cffff7d0aAddon|r |cff69ccf0Слава Україні!|r
 ## Title-zhCN:|cffff7d0aAddon|r |cff69ccf0Translator|r (Ukrainian)
